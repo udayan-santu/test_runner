@@ -1,30 +1,27 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   build:
     runs-on: self-hosted
 
     strategy:
       matrix:
-<<<<<<< Updated upstream
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-=======
         node-version: [18, 20]
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Set Node.js Version ${{ matrix.node-version }}
+    - name: Use Pre-Installed Node.js
       run: |
         nvm use ${{ matrix.node-version }}
-        node -v
->>>>>>> Stashed changes
+        node -v  # Verify the correct Node.js version is used
+
+    - name: Install Dependencies
+      run: npm ci
