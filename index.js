@@ -4,7 +4,7 @@ const cors = require('cors');
 app.use(cors({ origin: "*" }));
 
 app.get("/", async(req, res) => {
-    res.send('server is running 7');
+    res.send('server is running 8');
 });
 
 app.listen(3001, ()=> console.log('Server is running on 3000'))
